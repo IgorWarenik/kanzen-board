@@ -17,10 +17,10 @@ Also available in: [Русский](README-RU.md)
 
 Most task managers are built for neurotypical brains: long lists, deep hierarchies, weekly reviews, complex setups. For an ADHD brain, that's a trap. You spend more time organizing your tasks than doing them. The system becomes the procrastination.
 
-**ADHD Kanzen Board** is different. It combines two ideas that are independently proven to work for ADHD brains and doubles down on both:
+**ADHD Kanzen Board** combines two ideas that are independently proven to work for ADHD brains:
 
 - **Kanban** — everything is visible at once, on one screen, as cards on a board. No drilling into menus, no hidden backlogs.
-- **Kaizen** (改善, Japanese for "continuous improvement") — every task has an *impact* field. You write one sentence: why does this matter? If you can't answer that, the task probably shouldn't exist.
+- **Kaizen** (改善, "continuous improvement") — every task has an *impact* field. You write one sentence: why does this matter? If you can't answer that, the task probably shouldn't exist.
 
 The name **Kanzen** (完全) means "complete" in Japanese — a task isn't done until it's moved, tracked, and its impact is felt.
 
@@ -44,15 +44,15 @@ One of the most disruptive ADHD patterns is jumping between tasks before finishi
 
 ### Kaizen kills the "meaningless busy" trap
 
-ADHD brains are wired for interest, not importance. That makes it easy to fill a day with low-stakes tasks that *feel* productive while the important ones stay in Idea forever. The **Impact** field forces a one-sentence answer to "why does this matter?" before a card gets moved forward. It's friction in the right place — not on execution, but on selection.
+ADHD brains are wired for interest, not importance. That makes it easy to fill a day with low-stakes tasks that *feel* productive while the important ones stay in Idea forever. The **Impact** field forces a one-sentence answer to "why does this matter?" before a card gets moved forward.
 
 ### Pomodoro matches the ADHD attention window
 
-ADHD attention is not absent — it's *variable*. The 25-minute Pomodoro session is calibrated to the realistic focused attention window for most ADHD brains. Built into every card, one click starts a session. A macOS notification fires when it ends so you don't have to watch a timer.
+ADHD attention is not absent — it's *variable*. The 25-minute Pomodoro session is calibrated to the realistic focused attention window for most ADHD brains. Built into every card, one click starts a session. A macOS notification fires when it ends.
 
 ### Small steps build momentum (kaizen)
 
-The kaizen philosophy is about small, consistent improvements — not heroic effort. Subtasks with a live progress bar make large, paralyzing cards manageable: break it into 3–5 steps and check them off one at a time. When the last subtask is checked, the card moves to Done automatically. No decision required, no drag needed.
+Subtasks with a live progress bar make large, paralyzing cards manageable: break it into 3–5 steps and check them off one at a time. When the last subtask is checked, the card moves to Done automatically.
 
 ---
 
@@ -79,7 +79,7 @@ The kaizen philosophy is about small, consistent improvements — not heroic eff
 
 ---
 
-## What it looks like
+## Demo
 
 ### Subtasks → automatic Done move
 
@@ -93,6 +93,8 @@ The kaizen philosophy is about small, consistent improvements — not heroic eff
 
 ## Installation
 
+### Download (recommended)
+
 Download the latest `.dmg` from the [Releases](https://github.com/IgorWarenik/adhd-kanzen-board/releases) page, open it, drag **ADHD Kanzen Board.app** to Applications.
 
 > **Note: the app is currently unsigned.**
@@ -104,7 +106,7 @@ Download the latest `.dmg` from the [Releases](https://github.com/IgorWarenik/ad
 >
 > You only need to do this once. After that, the app opens normally.
 >
-> Alternatively: **System Settings → Privacy & Security** → scroll down to the blocked app → click **Open Anyway**.
+> Alternatively, you can allow it system-wide: **System Settings → Privacy & Security** → scroll down to the blocked app → click **Open Anyway**.
 
 ---
 
@@ -121,61 +123,15 @@ Requires Node.js 18+ and npm 9+.
 
 ---
 
-## Build a signed & notarized DMG
+## Build
 
-Every push to `master` triggers GitHub Actions which:
-1. Installs dependencies via `npm ci`
-2. Signs the `.app` with your Developer ID certificate (if secrets are configured)
-3. Notarizes via Apple's `notarytool`
-4. Uploads the `.dmg` + `.zip` as a workflow artifact (kept 30 days)
+Every push to `master` triggers GitHub Actions which builds a `.dmg` for macOS (universal, x64 + arm64).
 
-To publish a public GitHub Release with a download link, push a version tag:
+To publish a GitHub Release with a download link, push a version tag:
 
 ```bash
-# Bump version in package.json first, then:
 git tag v1.0.1
 git push origin v1.0.1
-```
-
-GitHub Actions builds, signs, notarizes and attaches the `.dmg` + `.zip` to a new Release automatically.
-
-### One-time setup: GitHub Secrets
-
-Go to **Settings → Secrets and variables → Actions → New repository secret** and add the five secrets below.
-
----
-
-#### 1. `CSC_CONTENT` — Developer ID certificate (base64)
-
-```bash
-# Export "Developer ID Application: ..." from Keychain Access as .p12
-base64 -i ~/Desktop/certificate.p12 | pbcopy
-```
-
-Paste the clipboard content as the secret value.
-
-#### 2. `CSC_KEY_PASSWORD` — password you set when exporting the .p12
-
-#### 3. `APPLE_ID` — your Apple ID email
-
-e.g. `dev@example.com`
-
-#### 4. `APPLE_APP_PASSWORD` — app-specific password
-
-Generate at [appleid.apple.com](https://appleid.apple.com) →
-**Sign-In and Security → App-Specific Passwords**.
-
-#### 5. `APPLE_TEAM_ID` — 10-character Team ID
-
-Find it at [developer.apple.com/account](https://developer.apple.com/account) →
-top-right corner next to your team name, e.g. `AB12CD34EF`.
-
----
-
-### Skip notarization locally
-
-```bash
-SKIP_NOTARIZE=true npm run build
 ```
 
 ---
@@ -183,7 +139,6 @@ SKIP_NOTARIZE=true npm run build
 ## Contributing
 
 Bug reports and feature requests are welcome via [GitHub Issues](https://github.com/IgorWarenik/adhd-kanzen-board/issues).
-Issue templates are provided for both.
 
 ---
 
