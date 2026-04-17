@@ -22,16 +22,34 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build DMG (Universal)
+      # ── Code signing: decode certificate from secret and expose as CSC_LINK ──
+      - name: Decode signing certificate
         env:
+          CSC_CONTENT: ${{ secrets.CSC_CONTENT }}
+        run: |
+          echo "$CSC_CONTENT" | base64 --decode > /tmp/certificate.p12
+          echo "CSC_LINK=/tmp/certificate.p12" >> $GITHUB_ENV
+
+      # ── Build, sign, and notarize ─────────────────────────────────────────────
+      - name: Build, sign and notarize DMG
+        env:
+          # Code signing
+          CSC_LINK: ${{ env.CSC_LINK }}
+          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+          # Notarization (used by scripts/notarize.js)
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          # GitHub token (needed by electron-builder publish machinery)
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Skip code signing — no Apple Developer certificate required
-          CSC_IDENTITY_AUTO_DISCOVERY: false
         run: npx electron-builder --mac --universal --publish never
 
+      # ── Upload artifact ───────────────────────────────────────────────────────
       - name: Upload DMG artifact
         uses: actions/upload-artifact@v4
         with:
           name: Kaizen-Board-${{ github.sha }}
-          path: dist/*.dmg
+          path: |
+            dist/*.dmg
+            dist/*.zip
           retention-days: 30
