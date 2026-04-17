@@ -58,3 +58,20 @@ top-right corner next to your team name, e.g. `AB12CD34EF`.
 ```bash
 SKIP_NOTARIZE=true npm run build
 ```
+
+---
+
+## Publish a release
+
+Every push to `master` builds and stores the DMG as a workflow artifact.
+To publish a public GitHub Release with a download link:
+
+```bash
+# Bump version in package.json first, then:
+git tag v1.0.1
+git push origin v1.0.1
+```
+
+GitHub Actions will build, sign, notarize and attach the `.dmg` + `.zip`
+to a new Release at **Releases → v1.0.1** automatically.
+Release notes are generated from commit messages.

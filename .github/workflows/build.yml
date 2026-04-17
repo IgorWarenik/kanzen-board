@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+    tags:
+      - "v*.*.*"
 
 jobs:
   build:
@@ -22,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # ── Code signing: decode certificate from secret and expose as CSC_LINK ──
+      # ── Code signing ──────────────────────────────────────────────────────────
       - name: Decode signing certificate
         env:
           CSC_CONTENT: ${{ secrets.CSC_CONTENT }}
@@ -30,21 +32,18 @@ jobs:
           echo "$CSC_CONTENT" | base64 --decode > /tmp/certificate.p12
           echo "CSC_LINK=/tmp/certificate.p12" >> $GITHUB_ENV
 
-      # ── Build, sign, and notarize ─────────────────────────────────────────────
+      # ── Build, sign, notarize ─────────────────────────────────────────────────
       - name: Build, sign and notarize DMG
         env:
-          # Code signing
           CSC_LINK: ${{ env.CSC_LINK }}
           CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
-          # Notarization (used by scripts/notarize.js)
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-          # GitHub token (needed by electron-builder publish machinery)
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx electron-builder --mac --universal --publish never
 
-      # ── Upload artifact ───────────────────────────────────────────────────────
+      # ── Upload artifact (every push) ──────────────────────────────────────────
       - name: Upload DMG artifact
         uses: actions/upload-artifact@v4
         with:
@@ -53,3 +52,19 @@ jobs:
             dist/*.dmg
             dist/*.zip
           retention-days: 30
+
+      # ── Publish GitHub Release (tags only) ───────────────────────────────────
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Kaizen Board ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          files: |
+            dist/*.dmg
+            dist/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
