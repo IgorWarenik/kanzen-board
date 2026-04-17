@@ -107,6 +107,7 @@ Download the latest `.dmg` from the [Releases](https://github.com/IgorWarenik/ka
 > You only need to do this once. After that, the app opens normally.
 >
 > Alternatively, you can allow it system-wide: **System Settings → Privacy & Security** → scroll down to the blocked app → click **Open Anyway**.
+> If that doesn't help, run xattr -dr com.apple.quarantine "/Applications/Kaizen Board.app" in the terminal (make sure that the name of the installed application is correct)
 
 ---
 
