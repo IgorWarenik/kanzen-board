@@ -1,0 +1,75 @@
+name: 💡 Feature Request
+description: Suggest an improvement or a new feature
+labels: ["enhancement"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Got an idea to make Kaizen Board better? Describe it below.
+        The more context you provide, the easier it is to evaluate and prioritise.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the frustration or limitation you're running into.
+      placeholder: "I often want to filter cards by multiple tags at once, but the current filter only supports one tag."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the feature or behaviour you'd like to see.
+      placeholder: "Add multi-select to the tag filter dropdown so I can pick several tags and see all matching cards."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any other approaches you've thought about or workarounds you use today.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Feature area
+      options:
+        - Cards & subtasks
+        - Columns & board layout
+        - Filters & search
+        - Deadlines & reminders
+        - Pomodoro timer
+        - Tags & priorities
+        - Kaizen / Retro features
+        - Archive
+        - Settings & preferences
+        - Performance
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: How important is this to you?
+      options:
+        - Nice to have
+        - Would use it regularly
+        - Blocking my workflow
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Mockups, screenshots, links to similar features in other apps — anything that helps illustrate the idea.
+    validations:
+      required: false

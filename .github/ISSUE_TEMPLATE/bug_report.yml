@@ -1,0 +1,89 @@
+name: 🐛 Bug Report
+description: Something isn't working as expected
+labels: ["bug"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug!
+        Please fill in as much detail as possible so we can reproduce and fix it quickly.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: A clear description of the bug.
+      placeholder: "When I click on a card, the modal opens empty instead of showing the card's content."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Step-by-step instructions to reproduce the issue.
+      placeholder: |
+        1. Open the app
+        2. Create a card with subtasks
+        3. Click the card title in search results
+        4. Modal opens empty
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      placeholder: "The card modal should open with all fields pre-filled."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: macOS version
+      options:
+        - macOS 15 Sequoia
+        - macOS 14 Sonoma
+        - macOS 13 Ventura
+        - macOS 12 Monterey
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: arch
+    attributes:
+      label: Mac architecture
+      options:
+        - Apple Silicon (M1/M2/M3/M4)
+        - Intel (x86_64)
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Kaizen Board version
+      placeholder: "e.g. 1.0.0 — found in the app menu → About"
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console output / logs
+      description: Open DevTools (View → Toggle Developer Tools) and paste any errors here.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, screen recordings, or anything else that might help.
+    validations:
+      required: false

@@ -1,0 +1,6 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: 💬 Discussion / Question
+    url: https://github.com/IgorWarenik/kaizen-board/discussions
+    about: Ask a question or start a general discussion about Kaizen Board
