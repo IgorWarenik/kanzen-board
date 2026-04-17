@@ -1,4 +1,4 @@
-# ADHD Kanzen Board
+# Kanzen Board
 
 > A minimalist macOS task board built around how the ADHD brain actually works — not how productivity gurus think it should.
 
@@ -9,7 +9,7 @@
 
 Also available in: [Русский](README-RU.md)
 
-![ADHD Kanzen Board — board overview](docs/assets/board.png)
+![Kanzen Board — board overview](docs/assets/board.png)
 
 ---
 
@@ -17,7 +17,7 @@ Also available in: [Русский](README-RU.md)
 
 Most task managers are built for neurotypical brains: long lists, deep hierarchies, weekly reviews, complex setups. For an ADHD brain, that's a trap. You spend more time organizing your tasks than doing them. The system becomes the procrastination.
 
-**ADHD Kanzen Board** combines two ideas that are independently proven to work for ADHD brains:
+**Kanzen Board** combines two ideas that are independently proven to work for ADHD brains:
 
 - **Kanban** — everything is visible at once, on one screen, as cards on a board. No drilling into menus, no hidden backlogs.
 - **Kaizen** (改善, "continuous improvement") — every task has an *impact* field. You write one sentence: why does this matter? If you can't answer that, the task probably shouldn't exist.
@@ -95,7 +95,7 @@ Subtasks with a live progress bar make large, paralyzing cards manageable: break
 
 ### Download (recommended)
 
-Download the latest `.dmg` from the [Releases](https://github.com/IgorWarenik/adhd-kanzen-board/releases) page, open it, drag **ADHD Kanzen Board.app** to Applications.
+Download the latest `.dmg` from the [Releases](https://github.com/IgorWarenik/adhd-kanzen-board/releases) page, open it, drag **Kanzen Board.app** to Applications.
 
 > **Note: the app is currently unsigned.**
 > The developer does not have a paid Apple Developer account ($99/year), so the DMG is built without a code signing certificate. macOS Gatekeeper will show a warning on first launch.

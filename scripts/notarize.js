@@ -36,7 +36,7 @@ exports.default = async function notarizing(context) {
 
   await notarize({
     tool: 'notarytool',
-    appBundleId: 'com.kaizenboard.app',   // must match build.appId in package.json
+    appBundleId: 'com.kanzenboard.app',   // must match build.appId in package.json
     appPath,
     appleId:       APPLE_ID,
     appleIdPassword: APPLE_APP_PASSWORD,

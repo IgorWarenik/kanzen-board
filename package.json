@@ -1,7 +1,7 @@
 {
-  "name": "kaizen-board",
+  "name": "kanzen-board",
   "version": "1.0.0",
-  "productName": "Kaizen Board",
+  "productName": "Kanzen Board",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -10,18 +10,18 @@
     "build:x64": "electron-builder --mac --x64"
   },
   "keywords": [],
-  "author": "Kaizen Board",
+  "author": "Kanzen Board",
   "license": "ISC",
-  "description": "Minimalist Kaizen board for macOS",
+  "description": "Minimalist Kanban + Kaizen board for ADHD on macOS",
   "devDependencies": {
     "@electron/notarize": "^2.5.0",
     "electron": "^41.2.1",
     "electron-builder": "^25.1.8"
   },
   "build": {
-    "appId": "com.kaizenboard.app",
-    "productName": "Kaizen Board",
-    "copyright": "Copyright © 2025 Kaizen Board",
+    "appId": "com.kanzenboard.app",
+    "productName": "Kanzen Board",
+    "copyright": "Copyright © 2025 Kanzen Board",
     "files": [
       "main.js",
       "preload.js",
@@ -49,7 +49,7 @@
       ]
     },
     "dmg": {
-      "title": "Kaizen Board",
+      "title": "Kanzen Board",
       "sign": false,
       "window": {
         "width": 540,

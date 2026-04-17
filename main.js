@@ -5,7 +5,7 @@ const fs   = require('fs');
 let mainWindow;
 
 // ─── DATA FILE ────────────────────────────────────────────────────
-// Stored in ~/Library/Application Support/kaizen-board/state.json
+// Stored in ~/Library/Application Support/kanzen-board/state.json
 const DATA_DIR  = app.getPath('userData');
 const DATA_FILE = path.join(DATA_DIR, 'state.json');
 
