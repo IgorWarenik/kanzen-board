@@ -1,6 +1,6 @@
 # Kanzen Board
 
-> A minimalist macOS task board built around how the ADHD brain actually works — not how productivity gurus think it should.
+> A minimalist macOS task board built around how the ADHD brain actually works — not how productivity gurus think it should. Web-demo https://kanzen-board.vercel.app/
 
 ![macOS](https://img.shields.io/badge/macOS-12%2B-black?logo=apple&logoColor=white)
 ![Electron](https://img.shields.io/badge/Electron-latest-47848F?logo=electron&logoColor=white)
